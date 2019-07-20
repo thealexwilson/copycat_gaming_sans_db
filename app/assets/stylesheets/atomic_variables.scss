@@ -1,0 +1,105 @@
+$atomic-directions: 'top' 'bottom' 'left' 'right';
+$atomic-axes: 'x' 'y';
+$atomic-units: (
+        4th: 0.25,
+        half: 0.5,
+        full: 1,
+        full-and-half: 1.5,
+        double: 2,
+        triple: 3,
+        quadruple: 4,
+        none: 0
+);
+
+$atomic-directions-alias: (
+        top: 't',
+        bottom: 'b',
+        left: 'l',
+        right: 'r',
+        x: 'x',
+        y: 'y'
+);
+
+$atomic-units-alias: (
+        4th: '4th',
+        half: 'half',
+        full: 1,
+        full-and-half: '1-and-half',
+        double: 2,
+        triple: 3,
+        quadruple: 4,
+        none: 0
+);
+
+
+@function alias-name($alias, $dir: false, $unit: false) {
+  @if $unit != false and $dir != false {
+    @return #{$alias}#{map-get($atomic-directions-alias, $dir)}-#{map-get($atomic-units-alias, $unit)};
+  }
+
+  @if $dir != false {
+    @return #{$alias}#{map-get($atomic-directions-alias, $dir)};
+  }
+
+  @if $unit != false {
+    @return #{$alias}-#{map-get($atomic-units-alias, $unit)};
+  }
+}
+
+// .no-PROP
+// .PROP-value
+// .PROP-direction-value
+// .PROP-axis-value
+// .no-PROP-direction
+// .no-PROP-axis
+@mixin scaled-atomics($property: '', $alias: '', $single-value: $global-margin) {
+  .no-#{$property} {
+    #{$property}: 0;
+  }
+
+  // .padding-half, -full, etc
+  @each $unit, $mult in $atomic-units {
+    .#{alias-name($alias, $unit: $unit)} {
+      #{$property}: $single-value * $mult;
+    }
+  }
+
+  // .padding-top-half, -top-full, etc
+  @each $dir in $atomic-directions {
+    @each $unit, $mult in $atomic-units {
+      .#{alias-name($alias, $dir, $unit)} {
+        #{$property}-#{$dir}: $single-value * $mult;
+      }
+    }
+  }
+
+  // .padding-x-half, -y-full, etc
+  @each $unit, $mult in $atomic-units {
+    .#{alias-name($alias, 'x', $unit)} {
+      #{$property}-left: $single-value * $mult;
+      #{$property}-right: $single-value * $mult;
+    }
+
+    .#{alias-name($alias, 'y', $unit)} {
+      #{$property}-top: $single-value * $mult;
+      #{$property}-bottom: $single-value * $mult;
+    }
+  }
+
+  // .no-padding-top etc
+  @each $dir in $atomic-directions {
+    .no-#{$property}-#{$dir} {
+      #{$property}-#{$dir}: 0;
+    }
+  }
+
+  .no-#{$property}-x {
+    #{$property}-left: 0;
+    #{$property}-right: 0;
+  }
+
+  .no-#{$property}-y {
+    #{$property}-top: 0;
+    #{$property}-bottom: 0;
+  }
+}

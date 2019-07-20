@@ -1,0 +1,25 @@
+@each $color, $values in $branding-color-atomics {
+  @each $value in $values {
+    .bg-#{$color}-#{$value} {
+      background-color: branding-color($color, $value);
+    }
+  }
+}
+
+@each $color, $values in $named-color-atomics {
+  @each $value in $values {
+    .bg-#{$color}-#{$value} {
+      background-color: named-color($color, $value);
+    }
+  }
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.no-bg {
+  background: none;
+}
+
+

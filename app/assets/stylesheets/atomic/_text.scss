@@ -1,0 +1,104 @@
+// FIXME: remove?
+$text-tiny: rem-calc(12);
+$text-small: rem-calc(14);
+$text-normal: rem-calc(16);
+$text-medium: rem-calc(22);
+$text-larger-medium: rem-calc(28);
+$text-medium-large: rem-calc(32);
+$text-large: rem-calc(42);
+$text-xlarge: rem-calc(58);
+
+.text-tiny-half,
+.t-th {
+  font-size: $text-tiny / 2;
+}
+
+.text-tiny,
+.t-t {
+  font-size: $text-tiny;
+}
+
+.text-small,
+.t-s {
+  font-size: $text-small;
+}
+
+.text-normal,
+.t-n {
+  font-size: $text-normal;
+}
+
+.text-medium,
+.t-m {
+  font-size: $text-medium;
+}
+
+.text-larger-medium,
+.t-m {
+  font-size: $text-larger-medium;
+}
+
+.text-medium-large,
+.t-ml {
+  font-size: $text-medium-large;
+}
+
+.text-large,
+.t-l {
+  font-size: $text-large;
+}
+
+.text-xlarge,
+.t-xl {
+  font-size: $text-xlarge;
+}
+
+.underlined,
+.td-u {
+  text-decoration: underline;
+}
+
+.strike-through,
+.td-st {
+  text-decoration: line-through;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.nocase {
+  text-transform: none;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.word-break-word {
+  word-break: break-word;
+}
+
+.word-wrap-word {
+  word-wrap: break-word;
+}

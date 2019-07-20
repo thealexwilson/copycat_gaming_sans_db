@@ -1,0 +1,20 @@
+.full-width.flex.ai-c.jc-c.mt-4
+  .mt-4.border-full.border-color-ltcyan.c-offwhite-100.bg-daggergray-100.p-1
+    h3.text-center
+      'Welcome to the RPG damage calculator!
+    .mt-1.text-center
+      'Gimme your character and weapon and I'll work my magic
+    .flex.jc-c
+      .female-warrior style='background-image: url(/assets/female_warrior_cropped.png)'
+      = form_tag class: 'mt-3 flex fd-c jc-fe ai-fe'
+        .flex.fd-c.jc-c.mt-1
+          div
+            = label_tag :character_level
+            div
+              = number_field_tag :char_level, nil, within: 1...91, required: true
+          .mt-2
+            = label_tag :weapon_type
+            div
+              = select_tag :weap_type, options_for_select(@attacks), include_blank: true, required: true
+          .mt-2
+            = submit_tag 'Do The Magic'

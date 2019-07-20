@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/// Provides a concise, one-line method for setting `border-radius`
+///
+/// @argument {number (with unit)} $radii
+///
+/// @example scss
+///   .element {
+///     @include border-top-radius(4px);
+///   }
+///
+///   // CSS Output
+///   .element {
+///     border-top-left-radius: 4px;
+///     border-top-right-radius: 4px;
+///   }
+
+@mixin border-top-radius($radii) {
+  border-top-left-radius: $radii;
+  border-top-right-radius: $radii;
+}
+
+@mixin border-top-right-radius($radii) {
+  border-top-right-radius: $radii;
+}
+
+@mixin border-right-radius($radii) {
+  border-bottom-right-radius: $radii;
+  border-top-right-radius: $radii;
+}
+
+@mixin border-bottom-right-radius($radii) {
+  border-bottom-right-radius: $radii;
+}
+
+@mixin border-bottom-radius($radii) {
+  border-bottom-left-radius: $radii;
+  border-bottom-right-radius: $radii;
+}
+
+@mixin border-bottom-left-radius($radii) {
+  border-bottom-left-radius: $radii;
+}
+
+@mixin border-left-radius($radii) {
+  border-bottom-left-radius: $radii;
+  border-top-left-radius: $radii;
+}
+
+@mixin border-top-left-radius($radii) {
+  border-top-left-radius: $radii;
+}
+
+@mixin border-radius($direction, $radii) {
+  border-radius: $radii;
+}
+
+$standard-atomic-mix-values: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50, 100);
+$border-direction-atomics: (
+        'top': $standard-atomic-mix-values,
+        'top-right': $standard-atomic-mix-values,
+        'right': $standard-atomic-mix-values,
+        'bottom-right': $standard-atomic-mix-values,
+        'bottom': $standard-atomic-mix-values,
+        'bottom-left': $standard-atomic-mix-values,
+        'left': $standard-atomic-mix-values,
+        'top-left': $standard-atomic-mix-values,
+);
+
+@each $value in $standard-atomic-mix-values {
+  .border-radius-#{$value} {
+    border-radius: #{$value}px;
+  }
+}
+
+//FIXME: fix this garbo repetition
+@each $direction, $values in $border-direction-atomics {
+  @each $value in $values {
+    .border-radius-#{$direction}-#{$value} {
+      @if ($direction == 'top') {
+        @include border-top-radius(#{$value}px);
+      }
+      @if ($direction == 'top-right') {
+        @include border-top-right-radius(#{$value}px);
+      }
+      @if ($direction == 'right') {
+        @include border-right-radius(#{$value}px);
+      }
+      @if ($direction == 'bottom-right') {
+        @include border-bottom-right-radius(#{$value}px);
+      }
+      @if ($direction == 'bottom') {
+        @include border-bottom-radius(#{$value}px);
+      }
+      @if ($direction == 'bottom-left') {
+        @include border-bottom-left-radius(#{$value}px);
+      }
+      @if ($direction == 'left') {
+        @include border-left-radius(#{$value}px);
+      }
+      @if ($direction == 'top-left') {
+        @include border-top-left-radius(#{$value}px);
+      }
+    }
+  }
+}

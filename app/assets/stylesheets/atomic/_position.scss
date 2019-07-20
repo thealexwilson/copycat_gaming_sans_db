@@ -1,0 +1,43 @@
+@mixin position($t: '', $r: '', $b: '', $l: '', $position: absolute) {
+  position: $position;
+
+  @if $t != '' {
+    top: $t;
+  }
+  @if $r != '' {
+    right: $r;
+  }
+  @if $b != '' {
+    bottom: $b;
+  }
+  @if $l != '' {
+    left: $l;
+  }
+}
+
+.position-relative,
+.p-r {
+  position: relative;
+}
+
+.position-absolute,
+.p-a {
+  position: absolute;
+}
+
+.position-fixed,
+.p-f {
+  position: fixed;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-inline {
+  display: inline;
+}

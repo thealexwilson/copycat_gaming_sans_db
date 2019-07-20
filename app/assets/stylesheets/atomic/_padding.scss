@@ -1,0 +1,3 @@
+@import 'atomic_variables';
+
+@include scaled-atomics($property: 'padding', $alias: 'p', $single-value: 24px);

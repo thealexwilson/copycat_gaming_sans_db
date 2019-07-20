@@ -1,0 +1,65 @@
+$branding-hues: ('black', 'gray', 'darkgray', 'mediumgray', 'lightgray', 'offwhite', 'teal');
+$named-color-hues: ('white', 'brown', 'darkbrown', 'daggergray');
+
+@function branding-color($hue, $value: 100) {
+  @if ($value > 100 or $value < 0) {
+    @error "Expected value between 0 and 100";
+  }
+
+  @if (not index($branding-hues, $hue)) {
+    @error "Expected #{$hue} to be one of #{$branding-hues}";
+  }
+
+  @return mix(map-get($branding-colors, $hue), #fff, $value);
+}
+
+@function named-color($hue, $value: 100) {
+  @if ($value > 100 or $value < 0) {
+    @error "Expected value between 0 and 100";
+  }
+
+  @if (not index($branding-hues, $hue) and not index($named-color-hues, $hue)) {
+    @error "Expected #{$hue} to be one of #{$branding-hues} or #{index($named-color-hues)}";
+  }
+
+  @if (index($named-color-hues, $hue)) {
+    @return mix(map-get($named-colors, $hue), #fff, $value);
+  } @else {
+    @return mix(map-get($branding-colors, $hue), #fff, $value);
+  }
+}
+
+$branding-colors: (
+        'black': #171717,
+        'gray': #333,
+        'darkgray': #272727,
+        'mediumgray': #9a9a9a,
+        'lightgray': rgba(239,239,239,.8),
+        'offwhite': #efefef,
+        'teal': #00cdcd
+);
+
+$named-colors: (
+        'white': #fff,
+        'brown': #966D45,
+        'darkbrown': #40281F,
+        'daggergray': #585858
+);
+
+$standard-atomic-mix-values: (10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+$branding-color-atomics: (
+        'black': $standard-atomic-mix-values,
+        'gray': $standard-atomic-mix-values,
+        'darkgray': $standard-atomic-mix-values,
+        'mediumgray': $standard-atomic-mix-values,
+        'lightgray': $standard-atomic-mix-values,
+        'offwhite': $standard-atomic-mix-values,
+        'teal': $standard-atomic-mix-values
+);
+
+$named-color-atomics: (
+        'white': $standard-atomic-mix-values,
+        'brown': $standard-atomic-mix-values,
+        'darkbrown': $standard-atomic-mix-values,
+        'daggergray': $standard-atomic-mix-values
+);

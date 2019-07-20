@@ -1,0 +1,15 @@
+@each $color, $values in $branding-color-atomics {
+  @each $value in $values {
+    .c-#{$color}-#{$value} {
+      color: branding-color($color, $value);
+    }
+  }
+}
+
+@each $color, $values in $named-color-atomics {
+  @each $value in $values {
+    .c-#{$color}-#{$value} {
+      color: named-color($color, $value);
+    }
+  }
+}
